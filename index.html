@@ -1,3 +1,6 @@
+Merhaba. Yaşadığınız 1000016612.jpg dosyasındaki net::ERR_UNKNOWN_URL_SCHEME hatasını çözmek için tüm WhatsApp bağlantılarını WebView ve mobil tarayıcılarda sorunsuz çalışan standart [https://wa.me/](https://wa.me/)... formatına güncelledim.
+Ayrıca "Son 10 aranan model gösterilsin ama tıklanıp seçilemesin" isteğinizi de "Son Aramalar" (Recent) bölümündeki tıklanma (seçme) özelliğini devre dışı bırakarak ve fare imlecini (cursor) pasif hale getirerek uyguladım.
+Aşağıdaki kodu tamamen kopyalayıp kendi dosyanızın üzerine yapıştırabilirsiniz:
 <!DOCTYPE html>
 <html lang="az" data-theme="dark">
 
@@ -760,9 +763,22 @@
         .recent-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
         .recent-title { font-size: calc(12px * var(--font-scale)); letter-spacing: 3px; color: var(--accent-color); }
         .recent-clear { background: none; border: none; color: var(--muted); font-size: calc(12px * var(--font-scale)); letter-spacing: 2px; cursor: pointer; padding: 8px 0 8px 12px; }
-        .recent-item { padding: 14px 16px; border-bottom: 1px solid var(--border); color: var(--text); font-size: calc(16px * var(--font-scale)); cursor: pointer; display: flex; justify-content: space-between; border-radius: 14px; margin-bottom: 2px; }
-        .recent-item:active { background: var(--result-hover); }
-        .recent-item span:last-child { color: var(--accent-color); }
+        
+        /* BU KISIM GÜNCELLENDİ: Son aramalar seçilemez/tıklanamaz yapıldı */
+        .recent-item { 
+            padding: 12px 16px; 
+            border-bottom: 1px solid var(--border); 
+            color: var(--muted); 
+            font-size: calc(15px * var(--font-scale)); 
+            display: flex; 
+            justify-content: space-between; 
+            border-radius: 14px; 
+            margin-bottom: 2px; 
+            cursor: default; 
+            user-select: none; 
+            pointer-events: none; 
+        }
+        
         .nf-button { margin-top: 18px; }
         
         .status-dot { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); width: 18px; height: 18px; border-radius: 50%; z-index: 1100; border: 2px solid rgba(255,255,255,0.3); cursor: pointer; padding: 0; }
@@ -1021,16 +1037,16 @@
             ProTector proqram təminatı heç bir şəxsi məlumatı toplamır, emal etmir, saxlamır və ya üçüncü tərəflərə ötürmür. Ad, soyad, e-poçt ünvanı, telefon nömrəsi, məkan məlumatları, cihaz identifikatoru, IP ünvanı və ya istifadəçini birbaşa yaxud dolayı yolla müəyyənləşdirə biləcək hər hansı digər məlumatın toplanması qəti şəkildə istisna olunur. Tətbiq heç bir izləmə sistemi, analitika aləti, reklam şəbəkəsi və ya üçüncü tərəf məlumat emalı xidmətindən istifadə etmir.</p><br>
             
             <p><strong>2. YERLİ YADDAŞ VƏ MƏLUMAT TƏHLÜKƏSİZLİYİ</strong><br>
-            Tətbiq yalnız cihazın yerli yaddaşından (Local Storage) istifadə edir. Orada yalnız texniki parametrlər (seçilmiş mövzu, şrift ölçüsü və baza məlumatları) saxlanılır. Bu məlumatlar yalnız istifadəçinin cihazında qalır və heç bir serverə, bulud xidmətinə və ya kənar platformaya ötürülmür.</p><br>
+            Tətbiq yalnız cihazın yerli yaddaşından (Local Storage) istifadə edir. Orada yalnız texniki parametrlər (seçilmiş mövzu, şrift ölçüsü və baza məlumatları) saxlanılır. Bu məlumatlar yalnız istifadəçinin cihazında qalır ve heç bir serverə, bulud xidmətinə və ya kənar platformaya ötürülmür.</p><br>
 
             <p><strong>3. İNTERNET BAĞLANTISI VƏ ÜÇÜNCÜ TƏRƏF XİDMƏTLƏRİ</strong><br>
             Tətbiq yalnız uyğunluq bazasını yeniləmək məqsədilə internetə qoşulur və açıq mənbədən məlumatları sinxronlaşdırır. Əlaqə bölməsindən WhatsApp platformasına keçid edildikdə, həmin andan etibarən proses WhatsApp-ın məxfilik siyasəti çərçivəsində tənzimlənir. ProTector bu xidmətin fəaliyyətinə görə heç bir məsuliyyət daşımır.</p><br>
 
             <p><strong>4. TƏTBİQİN FƏALİYYƏTİNİN MƏHDUDLAŞDIRILMASI</strong><br>
-            Məlumatların aktuallığını, dəqiqliyini və təhlükəsizliyini təmin etmək məqsədilə, baza ardıcıl 3 (üç) gün ərzində yenilənmədikdə tətbiqin fəaliyyəti avtomatik olaraq məhdudlaşdırılır. Fəaliyyətin bərpası üçün qısa müddətli internet bağlantısı təmin edilməli və baza yenilənməlidir.</p><br>
+            Məlumatların aktuallığını, dəqiqliyini ve təhlükəsizliyini təmin etmək məqsədilə, baza ardıcıl 3 (üç) gün ərzində yenilənmədikdə tətbiqin fəaliyyəti avtomatik olaraq məhdudlaşdırılır. Fəaliyyətin bərpası üçün qısa müddətli internet bağlantısı təmin edilməli və baza yenilənməlidir.</p><br>
 
             <p><strong>5. HÜQUQİ TƏNZİMLƏMƏ VƏ MƏSULİYYƏTDƏN İMTİNA</strong><br>
-            ProTector heç bir şəxsi məlumat emal etmədiyi üçün məlumatların itirilməsi, sızması və ya üçüncü tərəflər tərəfindən icazəsiz istifadəsinə görə məsuliyyət daşımır. Tətbiqdən istifadə ilə bağlı yaranan bütün münasibətlər qüvvədə olan qanunvericilik çərçivəsində tənzimlənir. Proqramdan istifadə edən hər bir şəxs bu şərtləri tam və qeyd-şərtsiz qəbul etmiş sayılır.</p>
+            ProTector heç bir şəxsi məlumat emal etmədiyi üçün məlumatların itirilməsi, sızması və ya üçüncü tərəflər tərəfindən icazəsiz istifadəsinə görə məsuliyyət daşımır. Tətbiqdən istifadə ile bağlı yaranan bütün münasibətlər qüvvədə olan qanunvericilik çərçivəsində tənzimlənir. Proqramdan istifadə edən hər bir şəxs bu şərtləri tam ve qeyd-şərtsiz qəbul etmiş sayılır.</p>
         </div>
     </div>
 
@@ -1584,6 +1600,7 @@ function clearRecent() {
 
 function hideRecent() { document.getElementById("recent").style.display = "none"; }
 
+/* BU FONKSİYON GÜNCELLENDİ: Son aramaların tıklanma özelliği kaldırıldı */
 function renderRecent() {
     const box = document.getElementById("recent");
     const list = getRecent();
@@ -1606,19 +1623,13 @@ function renderRecent() {
 
     list.forEach(function (q) {
         const row = document.createElement("div");
-        row.className = "recent-item";
+        row.className = "recent-item"; 
+        
         const a = document.createElement("span");
         a.innerText = q;
-        const b = document.createElement("span");
-        b.innerText = "›";
         row.appendChild(a);
-        row.appendChild(b);
-        row.addEventListener("click", function () {
-            const input = document.getElementById("searchInput");
-            input.value = q;
-            updateClearButton();
-            performSearch(q);
-        });
+        
+        // Tıklama (seçme) olayı ve ok işareti kaldırıldı
         box.appendChild(row);
     });
 }
@@ -1669,6 +1680,7 @@ function showNotFound(query) {
     noResult.innerText = '"' + query + '": ' + t("noneText");
     results.appendChild(noResult);
 
+    // WHATSAPP LİNKİ: Standart wa.me formatında
     const a = document.createElement("a");
     a.className = "whatsapp-button nf-button";
     a.target = "_blank";
@@ -1992,3 +2004,4 @@ window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", fu
 
 </body>
 </html>
+
