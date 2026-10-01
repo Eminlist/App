@@ -761,7 +761,6 @@
         .recent-title { font-size: calc(12px * var(--font-scale)); letter-spacing: 3px; color: var(--accent-color); }
         .recent-clear { background: none; border: none; color: var(--muted); font-size: calc(12px * var(--font-scale)); letter-spacing: 2px; cursor: pointer; padding: 8px 0 8px 12px; }
         
-        /* BU KISIM GÜNCELLENDİ: Son aramalar seçilemez/tıklanamaz yapıldı */
         .recent-item { 
             padding: 12px 16px; 
             border-bottom: 1px solid var(--border); 
@@ -783,7 +782,6 @@
         .status-dot.green { background: #2ecc71; box-shadow: 0 0 12px rgba(46,204,113,0.7); }
         .status-dot.gray { background: #8a8a8a; }
         .status-dot.yellow { background: #f1c40f; box-shadow: 0 0 12px rgba(241,196,15,0.7); }
-        /* QIRMIZI BİLDİRİŞ (OFFLİNE ÜÇÜN) */
         .status-dot.red { background: #e74c3c; box-shadow: 0 0 12px rgba(231,76,60,0.7); }
         
         .offline-corner { position: fixed; left: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); background: #ff5722; color: #fff; font-size: 10px; font-weight: 700; padding: 4px 8px; border-radius: 8px; z-index: 1100; display: none; letter-spacing: 1px; }
@@ -993,7 +991,8 @@
             <!-- ƏLAQƏ -->
             <div class="settings-section">
                 <div class="settings-section-title" data-i18n="secContact">ƏLAQƏ</div>
-                <a href="https://wa.me/994553115544?text=Salam,%20ProTector%20tətbiqi%20ilə%20bağlı%20yazıram." class="whatsapp-button" data-i18n="whatsapp" target="_blank" rel="noopener">
+                <!-- Android Intent formati ile yenilenmis WhatsApp linki -->
+                <a href="intent://send?phone=994553115544&text=Salam%2C%20ProTector%20t%C9%99tbiqi%20il%C9%99%20ba%C4%9Fl%C4%B1%20yaz%C4%B1ram.#Intent;scheme=whatsapp;package=com.whatsapp;end" class="whatsapp-button" data-i18n="whatsapp">
                     WhatsApp ilə əlaqə
                 </a>
             </div>
@@ -1597,7 +1596,6 @@ function clearRecent() {
 
 function hideRecent() { document.getElementById("recent").style.display = "none"; }
 
-/* BU FONKSİYON GÜNCELLENDİ: Son aramaların tıklanma özelliği kaldırıldı */
 function renderRecent() {
     const box = document.getElementById("recent");
     const list = getRecent();
@@ -1626,7 +1624,6 @@ function renderRecent() {
         a.innerText = q;
         row.appendChild(a);
         
-        // Tıklama (seçme) olayı ve ok işareti kaldırıldı
         box.appendChild(row);
     });
 }
@@ -1677,12 +1674,12 @@ function showNotFound(query) {
     noResult.innerText = '"' + query + '": ' + t("noneText");
     results.appendChild(noResult);
 
-    // WHATSAPP LİNKİ: Standart wa.me formatında
+    // Android Intent formatı ilə yenilənmiş WhatsApp linki
     const a = document.createElement("a");
     a.className = "whatsapp-button nf-button";
     a.target = "_blank";
     a.rel = "noopener";
-    a.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent("Salam, ProTector: bazada tapılmayan model — " + query);
+    a.href = "intent://send?phone=" + WA_NUMBER + "&text=" + encodeURIComponent("Salam, ProTector: bazada tapılmayan model — " + query) + "#Intent;scheme=whatsapp;package=com.whatsapp;end";
     a.innerText = t("nfBtn");
     results.appendChild(a);
 }
@@ -2001,4 +1998,3 @@ window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", fu
 
 </body>
 </html>
-
